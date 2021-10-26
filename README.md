@@ -37,6 +37,15 @@ Track JavaScript linter errors run:
 ```
 npx eslint .
 ```
+## Run webpack server
+```
+npm run start
+```
+
+## Run build
+```
+npm run build
+```
 
 ## Authors
 
