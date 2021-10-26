@@ -15,7 +15,7 @@ let dataList = [
 ];
 
 const index = () => {
-  for (let i = 0; i < dataList.length; i++) {
+  for (let i = 0; i < dataList.length; i++) { /* eslint-disable-line no-plusplus */
     dataList[i].index = i;
   }
 };
@@ -58,7 +58,7 @@ const component = () => {
   todoContainer.appendChild(element);
 
   clear.addEventListener('click', () => {
-    todoListData.splice(0);
+    dataList.splice(0);
     saveToLocalStorage();
     refreshPage();
   });
@@ -115,8 +115,8 @@ const component = () => {
       isComp(todo.completed, description);
 
       todoContainer.appendChild(element);
-  });
-}
+    });
+  }
 
   element = document.createElement('li');
 
