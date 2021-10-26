@@ -62,7 +62,7 @@ const component = () => {
     saveToLocalStorage();
     refreshPage();
   });
-
+  
   element = document.createElement('li');
   element.className = 'todo-item';
 

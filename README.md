@@ -41,7 +41,6 @@ npx eslint .
 ```
 npm run start
 ```
-
 ## Run build
 ```
 npm run build
@@ -51,8 +50,8 @@ npm run build
 
 👤 **Syeda Juveria Afreen**
 
-- GitHub: [@githubhandle](https://github.com/)
-- Twitter: [@twitterhandle](https://twitter.com/)
+- GitHub: [@githubhandle](https://github.com/sja-the-dude)
+- Twitter: [@twitterhandle](https://twitter.com/sja_thedude)
 - LinkedIn: [LinkedIn](https://www.linkedin.com/in//)
 
 
