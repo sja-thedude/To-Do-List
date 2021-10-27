@@ -1,44 +1,25 @@
 import { isComp, checkBox } from './script';
+import {
+  listUpdate, addToDo, clearAll, clearAllComp, itemDelete, capitalize,
+} from './addremove';
 import './style.css';
 
-let dataList = [
-  {
-    index: 0,
-    description: 'Wash The Dishes',
-    completed: false,
-  },
-  {
-    index: 1,
-    description: 'Read For 30 mins',
-    completed: false,
-  },
-];
+let dataList = [];
 
-const index = () => {
+const index = (dataList) => {
   for (let i = 0; i < dataList.length; i++) { /* eslint-disable-line no-plusplus */
-    dataList[i].index = i;
+    dataList[i].index = i + i;
   }
+
+  return dataList;
 };
 
-const saveToLocalStorage = () => {
+const saveToLocalStorage = (dataList) => {
   localStorage.setItem('todo_list', JSON.stringify(dataList));
 };
 
 const refreshPage = () => {
   window.location.reload();
-};
-
-const addToDo = (input) => {
-  const dataObj = {
-    index: dataList.length,
-    description: '',
-    completed: false,
-  };
-
-  dataObj.description = input;
-  dataList.push(dataObj);
-  saveToLocalStorage();
-  refreshPage();
 };
 
 const component = () => {
@@ -57,11 +38,7 @@ const component = () => {
   element.appendChild(clear);
   todoContainer.appendChild(element);
 
-  clear.addEventListener('click', () => {
-    dataList.splice(0);
-    saveToLocalStorage();
-    refreshPage();
-  });
+  clearAll(clear, dataList, saveToLocalStorage, refreshPage);
 
   element = document.createElement('li');
   element.className = 'todo-item';
@@ -80,12 +57,16 @@ const component = () => {
 
   addItem.addEventListener('keydown', (e) => {
     if (e.key === 'Enter') {
-      addToDo(addItem.value);
+      addToDo(addItem.value, dataList);
+      saveToLocalStorage(dataList);
+      refreshPage();
     }
   });
 
   btn.addEventListener('click', () => {
-    addToDo(addItem.value);
+    addToDo(addItem.value, dataList);
+    saveToLocalStorage(dataList);
+    refreshPage();
   });
 
   if (dataList.length !== 0) {
@@ -102,8 +83,7 @@ const component = () => {
       const description = document.createElement('textarea');
       description.className = 'description';
       description.rows = 'auto';
-      description.value = todo.description.toLowerCase().charAt(0).toUpperCase();
-      description.value += todo.description.slice(1);
+      description.value = capitalize(todo.description);
       element.appendChild(description);
 
       const taskButton = document.createElement('button');
@@ -111,12 +91,16 @@ const component = () => {
       taskButton.innerHTML = '<i class=\'ellipsis vertical icon\'></i>';
       element.appendChild(taskButton);
 
-      checkBox(checkbox, todo, saveToLocalStorage, refreshPage);
+      checkBox(checkbox, todo, dataList, saveToLocalStorage, refreshPage);
       isComp(todo.completed, description);
 
       todoContainer.appendChild(element);
     });
   }
+
+  listUpdate(dataList, saveToLocalStorage, refreshPage);
+
+  itemDelete(dataList, index, saveToLocalStorage, refreshPage);
 
   element = document.createElement('li');
 
@@ -126,12 +110,7 @@ const component = () => {
   element.appendChild(clearCompleted);
   todoContainer.appendChild(element);
 
-  clearCompleted.addEventListener('click', () => {
-    dataList = dataList.filter((todo) => todo.completed !== true);
-    index();
-    saveToLocalStorage();
-    refreshPage();
-  });
+  clearAllComp(clearCompleted, dataList, index, saveToLocalStorage, refreshPage);
 };
 
 const pageLoad = () => {
