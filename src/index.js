@@ -110,7 +110,7 @@ const component = () => {
   element.appendChild(clearCompleted);
   todoContainer.appendChild(element);
 
-  clearAllComp(clearCompleted, dataList, index, saveToLocalStorage, refreshPage)
+  clearAllComp(clearCompleted, dataList, index, saveToLocalStorage, refreshPage);
 };
 
 const pageLoad = () => {
