@@ -6,6 +6,8 @@ This project is part of the 2nd Module 2 Block of Microverse curriculum. The mai
 
 This project will be a basic website that allows users to add, modify and remove a list of To Do tasks.
 
+##[Live](https://sja-thedude.github.io/To-Do-List/dist/)
+
 ## Built With
 
 - Html/Css
